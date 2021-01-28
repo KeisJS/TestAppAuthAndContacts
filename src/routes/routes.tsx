@@ -1,3 +1,4 @@
+import { Redirect } from 'react-router-dom';
 import { RoutesData, RouteData } from './intefaces';
 
 const auth: RouteData = {
@@ -12,7 +13,14 @@ const contacts: RouteData = {
   component: () => <div>Contacts here</div>
 }
 
+export const defaultRoute: RouteData = {
+  name: 'DefaultRoute',
+  pattern: '*',
+  component: () => <Redirect to={ auth.pattern } />
+}
+
 export const routes: RoutesData = {
+  defaultRoute,
   auth,
-  contacts,
+  contacts
 }

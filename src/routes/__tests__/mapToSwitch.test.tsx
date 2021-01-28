@@ -22,7 +22,12 @@ const testRoutes: RoutesData = {
     name: 'route2',
     pattern: '/route2',
     component: () => <div>{ testTextSecond }</div>
-  }
+  },
+  defaultRoute: {
+    name: 'defaultRoute',
+    pattern: '*',
+    component: () => <div>default</div>
+  },
 }
 
 const selector = {
@@ -30,6 +35,7 @@ const selector = {
   linkSecond: byText(testRoutes.route2.name),
   routeOneComponent: byText(testTextOne),
   routeSecondComponent: byText(testTextSecond),
+  defaultComponent: byText('default'),
 }
 
 describe('Test mapToSwitch router util', () => {
@@ -40,9 +46,11 @@ describe('Test mapToSwitch router util', () => {
         { mapRoutesToSwitch(testRoutes) }
       </MemoryRouter>
     ));
-    
+
+    expect(selector.defaultComponent.query()).toBeInTheDocument();
+
     userEvent.click(selector.linkOne.get());
-    
+
     expect(selector.routeOneComponent.query()).toBeInTheDocument();
     expect(selector.routeSecondComponent.query()).not.toBeInTheDocument();
   });

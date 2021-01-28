@@ -7,5 +7,6 @@ export interface RouteData {
 }
 
 export interface RoutesData {
+  defaultRoute: RouteData;
   [name: string]: RouteData;
 }
