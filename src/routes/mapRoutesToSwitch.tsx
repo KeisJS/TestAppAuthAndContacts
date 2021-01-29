@@ -5,7 +5,6 @@ import { RoutesData } from './intefaces';
 
 export function mapRoutesToSwitch({ defaultRoute, ...routes }: RoutesData): React.ReactElement {
   
-  
   return (
     <Switch>
       { flatMap(routes, route => (
