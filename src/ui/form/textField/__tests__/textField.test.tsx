@@ -31,6 +31,7 @@ describe('TextField test', () => {
     userEvent.type(textField, testMsg);
     
     expect(textField).toHaveValue(testMsg);
+    expect(textField).toHaveAttribute('type', 'text');
   });
   
   it('test status text', () => {

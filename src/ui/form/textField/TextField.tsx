@@ -8,6 +8,7 @@ export interface TextFieldProps {
   /**
    * Field label
    */
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
   label?: string;
   /**
    * Text under input field
@@ -17,7 +18,6 @@ export interface TextFieldProps {
    * For TextField container customize
    */
   className?: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
   /**
    * Option onblur handler
    * @param e
@@ -31,6 +31,10 @@ export interface TextFieldProps {
    * For validations needs
    */
   isInvalid?: boolean;
+  /**
+   * Type text or password
+   */
+  type?: 'text' | 'password';
 }
 
 export const statusClasses = {
@@ -41,37 +45,30 @@ export const statusClasses = {
   invalid: {
     control: 'is-invalid',
     feedback: 'invalid-feedback'
+  },
+  default: {
+    control: '',
+    feedback: ''
   }
 }
 
-export function TextField(props: TextFieldProps) {
-  const {
-    label,
-    statusText,
-    className = '',
-    isValid,
-    isInvalid,
-    ...restProps
-  } = props;
+export function TextField({
+                            label,
+                            statusText,
+                            className = '',
+                            isValid,
+                            isInvalid,
+                            type = 'text',
+                            ...restProps
+                          }: TextFieldProps) {
   
-  const statusClasses = {
-    valid: '',
-    feedback: '',
-  };
-  
-  if (isValid) {
-    statusClasses.valid = 'is-valid';
-    statusClasses.feedback = 'valid-feedback';
-  } else if (isInvalid) {
-    statusClasses.valid = 'is-invalid';
-    statusClasses.feedback = 'invalid-feedback';
-  }
+  const statusKey = isValid ? 'valid' : isInvalid ? 'invalid' : 'default';
   
   return (
     <div className={ className }>
       <label className="form-label">{ label }</label>
-      <input type="text" className={ `form-control ${ statusClasses.valid }` } { ...restProps } />
-      <div className={ `form-text ${ statusClasses.feedback }` }>{ statusText }</div>
+      <input type={ type } className={ `form-control ${ statusClasses[statusKey].control }` } { ...restProps } />
+      <div className={ `form-text ${ statusClasses[statusKey].feedback }` }>{ statusText }</div>
     </div>
   )
 }
