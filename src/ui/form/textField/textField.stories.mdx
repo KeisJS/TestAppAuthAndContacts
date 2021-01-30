@@ -1,13 +1,17 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { TextField } from './TextField';
-import { DefaultUse } from './textField.stories';
+import { DefaultUse, InValidState, ValidState } from './textField.stories';
 
 <Meta title="UI/Form/TextField" component={ TextField }/>
 
 # TextField
 
+Simple `<form />` text field. With validation states support.
+
 <Canvas>
-  <Story story={ DefaultUse }/>
+  <Story story={ DefaultUse } />
+  <Story story={ ValidState } />
+  <Story story={ InValidState } />
 </Canvas>
 
 <ArgsTable of={ TextField } />

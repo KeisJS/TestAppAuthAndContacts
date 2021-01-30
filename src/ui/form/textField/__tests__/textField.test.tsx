@@ -1,30 +1,62 @@
 import React, { useState } from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { TextField } from '../TextField';
-import { byRole } from 'testing-library-selector';
+import { TextField, TextFieldProps, statusClasses } from '../TextField';
+import { byRole, byText } from 'testing-library-selector';
 
 describe('TextField test', () => {
-  const textField = byRole('textbox');
   const testMsg = 'test msg';
-  const Container = () => {
+  const statusText = 'status text';
+
+  const textFieldSelector = byRole('textbox');
+  const statusTextSelector = byText(statusText);
+  
+  const Container = (props: Partial<TextFieldProps>  = {}) => {
     const [value, setValue] = useState('');
     
     return (
       <TextField
         value={ value }
         onChange={ (e) => { setValue(e.target.value) } }
+        { ...props }
       />
     )
   }
   
-  it('default use', async () => {
+  it('default use', () => {
     render(<Container />);
     
-    const testTextField = textField.get();
+    const textField = textFieldSelector.get();
     
-    await userEvent.type(testTextField, testMsg);
+    userEvent.type(textField, testMsg);
     
-    expect(testTextField).toHaveValue(testMsg);
-  })
+    expect(textField).toHaveValue(testMsg);
+  });
+  
+  it('test status text', () => {
+    const { rerender } = render(<Container />);
+    
+    expect(statusTextSelector.query()).not.toBeInTheDocument();
+    
+    rerender(<Container statusText={statusText} />);
+    
+    expect(statusTextSelector.query()).toBeInTheDocument();
+  });
+  
+  it('test validation status', () => {
+    const { rerender } = render(<Container isValid statusText={ statusText } />);
+    const textField = textFieldSelector.get();
+    const statusTextBlock = statusTextSelector.get();
+    
+    expect(textField).toHaveClass(statusClasses.valid.control);
+    expect(statusTextBlock).toHaveClass(statusClasses.valid.feedback)
+  
+    rerender(<Container isInvalid statusText={ statusText } />);
+  
+    expect(textField).not.toHaveClass(statusClasses.valid.control);
+    expect(statusTextBlock).not.toHaveClass(statusClasses.valid.feedback);
+  
+    expect(textField).toHaveClass(statusClasses.invalid.control);
+    expect(statusTextBlock).toHaveClass(statusClasses.invalid.feedback);
+  });
 })
