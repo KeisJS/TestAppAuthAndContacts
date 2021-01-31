@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { TextField, TextFieldProps, statusClasses } from '../TextField';
 import { byRole, byText } from 'testing-library-selector';

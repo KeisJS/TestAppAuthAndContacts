@@ -2,7 +2,6 @@ import React from 'react';
 import { Story } from '@storybook/react/types-6-0';
 import { TextField, TextFieldProps } from './TextField';
 
-
 const Template: Story<TextFieldProps> = props => <TextField { ...props } />;
 
 export const DefaultUse = Template.bind({});

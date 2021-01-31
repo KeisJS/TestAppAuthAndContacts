@@ -52,15 +52,15 @@ export const statusClasses = {
   }
 }
 
-export function TextField({
-                            label,
-                            statusText,
-                            className = '',
-                            isValid,
-                            isInvalid,
-                            type = 'text',
-                            ...restProps
-                          }: TextFieldProps) {
+export const TextField: React.FC<TextFieldProps> = function ({
+  label,
+  statusText,
+  className = '',
+  isValid,
+  isInvalid,
+  type = 'text',
+  ...restProps
+}) {
   
   const statusKey = isValid ? 'valid' : isInvalid ? 'invalid' : 'default';
   

@@ -1,0 +1,14 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Button } from './Button';
+import { PrimaryButton, PreloaderButton } from './button.stories';
+
+<Meta title="UI/Button" component={ Button } />
+
+# Button
+
+<Canvas>
+  <Story story={ PrimaryButton } />
+  <Story story={ PreloaderButton } />
+</Canvas>
+
+<ArgsTable of={ Button }/>
