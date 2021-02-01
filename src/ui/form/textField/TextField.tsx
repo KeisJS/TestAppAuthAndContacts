@@ -35,6 +35,7 @@ export interface TextFieldProps {
    * Type text or password
    */
   type?: 'text' | 'password';
+  id?: string;
 }
 
 export const statusClasses = {
@@ -59,6 +60,7 @@ export const TextField: React.FC<TextFieldProps> = function ({
   isValid,
   isInvalid,
   type = 'text',
+  id = '',
   ...restProps
 }) {
   
@@ -66,8 +68,8 @@ export const TextField: React.FC<TextFieldProps> = function ({
   
   return (
     <div className={ className }>
-      <label className="form-label">{ label }</label>
-      <input type={ type } className={ `form-control ${ statusClasses[statusKey].control }` } { ...restProps } />
+      <label className="form-label" htmlFor={ id }>{ label }</label>
+      <input id={ id } type={ type } className={ `form-control ${ statusClasses[statusKey].control }` } { ...restProps } />
       <div className={ `form-text ${ statusClasses[statusKey].feedback }` }>{ statusText }</div>
     </div>
   )

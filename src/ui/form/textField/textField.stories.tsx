@@ -11,6 +11,7 @@ DefaultUse.args = {
   value: 'Simple value',
   label: 'Simple label',
   type: 'text',
+  id: 'simpleId'
 }
 
 export const ValidState = Template.bind({});

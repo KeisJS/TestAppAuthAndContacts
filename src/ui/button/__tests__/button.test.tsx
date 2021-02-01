@@ -32,7 +32,7 @@ describe('Test Button', () => {
   
   it('attr use', () => {
     const { rerender, getByText } = render((
-      <Button onClick={onClick} disabled primary>
+      <Button disabled primary>
         { buttonText }
       </Button>
     ));
@@ -45,7 +45,7 @@ describe('Test Button', () => {
   
   it('preloader use', () => {
     render((
-      <Button onClick={onClick} preloader primary>
+      <Button preloader primary>
         { buttonText }
       </Button>
     ));

@@ -2,7 +2,7 @@ import React from 'react';
 import { Spinner } from 'ui/spinner/Spinner';
 
 export interface ButtonProps {
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
   /**
    * Primary button attr
@@ -30,7 +30,7 @@ export const Button: React.FC<ButtonProps> = function ({
       type={ type }
       className={`btn ${ primary ? buttonClasses.primary : ''}`}
       { ...restProps }
-      disabled={ preloader ? true : disabled }
+      disabled={ preloader || Boolean(disabled) }
     >
       { preloader ? (
         <>
