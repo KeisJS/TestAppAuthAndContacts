@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './styles.module.scss';
 
 export interface TextFieldProps {
   /**
@@ -70,7 +71,7 @@ export const TextField: React.FC<TextFieldProps> = function ({
     <div className={ className }>
       <label className="form-label" htmlFor={ id }>{ label }</label>
       <input id={ id } type={ type } className={ `form-control ${ statusClasses[statusKey].control }` } { ...restProps } />
-      <div className={ `form-text ${ statusClasses[statusKey].feedback }` }>{ statusText }</div>
+      <div className={ `form-text ${ styles.statusText } ${ statusClasses[statusKey].feedback }` }>{ statusText }</div>
     </div>
   )
 }

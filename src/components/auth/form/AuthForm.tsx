@@ -4,6 +4,7 @@ import { Button } from 'ui/button/Button';
 import { useFormik } from 'formik';
 import { authFormFormikConfig } from './authForm.formik.config';
 import { AuthFormProps } from './interfaces';
+import styles from './styles.module.scss';
 
 export const authFields = {
   login: {
@@ -30,10 +31,10 @@ export const AuthForm: React.FC<AuthFormProps> = function ({ onSubmit }) {
     if(isSubmitting && isValid) {
       onSubmit(values, { setSubmitting });
     }
-  }, [isSubmitting, isValid]);
+  }, [isSubmitting, isValid, onSubmit, values, setSubmitting]);
   
   return (
-    <div>
+    <div className={ styles.form }>
       <form onSubmit={ handleSubmit }>
         <TextField label={ authFields.login.label }
                    id={ authFields.login.id }
@@ -49,9 +50,11 @@ export const AuthForm: React.FC<AuthFormProps> = function ({ onSubmit }) {
                    isValid={ Boolean(touched.password && !errors.password)}
                    isInvalid={ Boolean(touched.password && errors.password) }
         />
-        <Button primary type="submit" disabled={ !isValid } preloader={ isSubmitting }>
-          Enter
-        </Button>
+        <div className="text-end">
+          <Button primary type="submit" disabled={ !isValid } preloader={ isSubmitting }>
+            Enter
+          </Button>
+        </div>
       </form>
     </div>
   );

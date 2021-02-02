@@ -7,7 +7,15 @@ export default {
   component: AuthForm
 } as Meta;
 
-export const DefaultUse: Story<AuthFormProps> = props => <AuthForm { ...props } />
+export const DefaultUse: Story<AuthFormProps> = props => (
+  <div className="container">
+    <div className="row vh-100 justify-content-center align-items-center">
+      <div className="col-4">
+        <AuthForm { ...props } />
+      </div>
+    </div>
+  </div>
+)
 
 DefaultUse.args = {
   onSubmit: (values, { setSubmitting }) => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { MemoryRouter, Link, StaticRouter } from 'react-router-dom';
+import { MemoryRouter, Link } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import { flatMap } from 'lodash';
 import { byText } from 'testing-library-selector';
