@@ -1,5 +1,5 @@
 import React from 'react';
-import { Spinner } from 'ui/spinner/Spinner';
+import { Spinner } from 'components/ui/spinner/Spinner';
 
 export interface ButtonProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { TextField } from 'ui/form/textField/TextField';
-import { Button } from 'ui/button/Button';
+import { TextField } from 'components/ui/form/textField/TextField';
+import { Button } from 'components/ui/button/Button';
 import { useFormik } from 'formik';
 import { authFormFormikConfig } from './authForm.formik.config';
 import { AuthFormProps } from './interfaces';

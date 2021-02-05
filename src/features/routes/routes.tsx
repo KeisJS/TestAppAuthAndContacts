@@ -1,6 +1,6 @@
 import { Redirect } from 'react-router-dom';
 import { RoutesData, RouteData } from './intefaces';
-import { AuthPage } from '../components/auth/page/AuthPage';
+import { AuthPage } from '../auth/page/AuthPage';
 
 const auth: RouteData = {
   name: 'auth',

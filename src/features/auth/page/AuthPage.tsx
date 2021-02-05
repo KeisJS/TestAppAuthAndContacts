@@ -1,7 +1,7 @@
 import React from 'react';
 import { AuthForm } from '../form/AuthForm';
 import { Redirect } from 'react-router-dom';
-import { routes } from '../../../routes/routes';
+import { routes } from '../../routes/routes';
 
 interface User {
   id: number;

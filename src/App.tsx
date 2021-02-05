@@ -2,9 +2,9 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
 import { BrowserRouter } from 'react-router-dom';
-import { mapRoutesToSwitch } from './routes/mapRoutesToSwitch';
-import { routes } from './routes/routes';
-import './fas.config';
+import { mapRoutesToSwitch } from './features/routes/mapRoutesToSwitch';
+import { routes } from './features/routes/routes';
+import './features/app/fas.config';
 
 function App() {
   return (

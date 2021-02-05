@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 import { flatMap } from 'lodash';
 import { byText } from 'testing-library-selector';
 import userEvent  from '@testing-library/user-event';
-import { mapRoutesToSwitch } from 'routes/mapRoutesToSwitch';
+import { mapRoutesToSwitch } from 'features/routes/mapRoutesToSwitch';
 import { RoutesData, RouteData } from '../intefaces';
 
 const testTextOne = 'test text 1';

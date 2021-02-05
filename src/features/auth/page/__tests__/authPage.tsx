@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { MemoryRouter, Switch, Route, Redirect } from 'react-router-dom';
-import { routes } from 'routes/routes';
+import { routes } from 'features/routes/routes';
 import { AuthPage } from '../AuthPage';
 import { byText } from 'testing-library-selector';
 
