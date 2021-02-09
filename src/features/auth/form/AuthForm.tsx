@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { TextField } from 'components/ui/form/textField/TextField';
 import { Button } from 'components/ui/button/Button';
 import { useFormik } from 'formik';
 import { authFormFormikConfig } from './authForm.formik.config';
-import { AuthFormProps } from './interfaces';
 import styles from './styles.module.scss';
 
 export const authFields = {
@@ -17,7 +17,7 @@ export const authFields = {
   }
 }
 
-export const AuthForm: React.FC<AuthFormProps> = function ({ onSubmit }) {
+export const AuthForm = function () {
   const {
     values, errors, touched,
     getFieldProps,
@@ -27,11 +27,13 @@ export const AuthForm: React.FC<AuthFormProps> = function ({ onSubmit }) {
     setSubmitting,
   } = useFormik(authFormFormikConfig);
   
+  const dispatch = useDispatch();
+  
   useEffect(() => {
     if(isSubmitting && isValid) {
-      onSubmit(values, { setSubmitting });
+      dispatch({ type: 'test' })
     }
-  }, [isSubmitting, isValid, onSubmit, values, setSubmitting]);
+  }, [isSubmitting, isValid, values, setSubmitting, dispatch]);
   
   return (
     <div className={ styles.form }>

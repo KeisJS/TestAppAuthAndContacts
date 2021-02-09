@@ -1,26 +1,22 @@
-import { Meta, Story } from '@storybook/react';
+import { Meta } from '@storybook/react';
 import { AuthForm } from './AuthForm';
-import { AuthFormProps } from './interfaces';
+import { getEmptyStoreTestProvider } from '../../../utils/getTestProvider';
 
 export default {
   title: 'Component/Auth/Form',
   component: AuthForm
 } as Meta;
 
-export const DefaultUse: Story<AuthFormProps> = props => (
+const { TestProvider } = getEmptyStoreTestProvider();
+
+export const DefaultUse = () => (
   <div className="container">
     <div className="row vh-100 justify-content-center align-items-center">
       <div className="col-4">
-        <AuthForm { ...props } />
+        <TestProvider>
+          <AuthForm />
+        </TestProvider>
       </div>
     </div>
   </div>
 )
-
-DefaultUse.args = {
-  onSubmit: (values, { setSubmitting }) => {
-    setTimeout(() => {
-      setSubmitting(false);
-    }, 1000)
-  }
-}

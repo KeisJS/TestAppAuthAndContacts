@@ -1,8 +1,8 @@
-import { configureStore } from '@reduxjs/toolkit'
-import rootReducer from './rootReducer'
+import { configureStore } from '@reduxjs/toolkit';
+import rootReducerMap from './rootReducer';
 
 const store = configureStore({
-  reducer: rootReducer
+  reducer: rootReducerMap
 })
 
 if (process.env.NODE_ENV === 'development' && module.hot) {
@@ -12,6 +12,7 @@ if (process.env.NODE_ENV === 'development' && module.hot) {
   })
 }
 
-export type AppDispatch = typeof store.dispatch
+export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;
 
 export default store

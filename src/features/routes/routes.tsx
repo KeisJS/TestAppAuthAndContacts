@@ -5,7 +5,7 @@ import { AuthPage } from '../auth/page/AuthPage';
 const auth: RouteData = {
   name: 'auth',
   pattern: '/auth',
-  component: (params) => <AuthPage user={null} { ...params } />
+  component: () => <AuthPage />
 };
 
 const contacts: RouteData = {

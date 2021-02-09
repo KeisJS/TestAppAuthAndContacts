@@ -1,8 +1,5 @@
 import { createAction, createReducer  } from '@reduxjs/toolkit';
-
-interface User {
-  id: number
-}
+import { User } from './interfaces';
 
 type UserState = User | null;
 
@@ -10,13 +7,17 @@ const actions = {
   set: createAction<User>('user/set')
 }
 
-const reducer = createReducer(null as UserState, builder => {
+const initialState = null as UserState;
+
+const reducer = createReducer(initialState, builder => {
   builder.addCase(actions.set, (user, { payload }) => {
     return payload;
   })
-})
+});
 
-export default {
+const userSlice = {
   actions,
   reducer
 }
+
+export default userSlice;
