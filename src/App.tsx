@@ -4,7 +4,7 @@ import './App.scss';
 import { BrowserRouter } from 'react-router-dom';
 import { mapRoutesToSwitch } from './features/routes/mapRoutesToSwitch';
 import { routes } from './features/routes/routes';
-import './features/app/fas.config';
+import './app/fas.config';
 
 function App() {
   return (
