@@ -5,6 +5,7 @@ import { Button } from 'components/ui/button/Button';
 import { useFormik } from 'formik';
 import { authFormFormikConfig } from './authForm.formik.config';
 import styles from './styles.module.scss';
+import authSlice from './authSlice';
 
 export const authFields = {
   login: {
@@ -31,7 +32,10 @@ export const AuthForm = function () {
   
   useEffect(() => {
     if(isSubmitting && isValid) {
-      dispatch({ type: 'test' })
+      dispatch(authSlice.actions.authProcess({
+        login: values.login,
+        password: values.password
+      }))
     }
   }, [isSubmitting, isValid, values, setSubmitting, dispatch]);
   
