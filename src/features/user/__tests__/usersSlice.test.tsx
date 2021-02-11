@@ -1,10 +1,7 @@
 import userSlice from '../user.slice';
+import { testUser } from '../test.data';
 
 describe('user slice', () => {
-  const testUser = {
-    id: 100
-  };
-  
   const { reducer: userReducer } = userSlice;
   
   it('test set feature', () => {
