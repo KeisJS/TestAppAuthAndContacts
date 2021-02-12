@@ -4,7 +4,7 @@ import { MemoryRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { routes } from 'features/routes/routes';
 import { AuthPage } from '../AuthPage';
 import { byText, byRole } from 'testing-library-selector';
-import getTestProvider from '../../../../utils/getTestProvider';
+import { getTestProvider } from '../../../../utils/test';
 import { userSlice } from 'features/user';
 
 describe('Auth path', () => {

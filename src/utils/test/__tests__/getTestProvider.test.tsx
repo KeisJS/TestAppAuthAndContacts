@@ -1,10 +1,10 @@
 import React from 'react';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { useSelector, useDispatch } from 'react-redux';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { byText, byRole } from 'testing-library-selector';
 import userEvent from '@testing-library/user-event';
-import getTestProvider, { getEmptyStoreTestProvider, spyStore } from '../getTestProvider';
+import { getEmptyStoreTestProvider, spyStore, getTestProvider } from '../';
 
 describe('test stores test utils', () => {
   it('default use', async () => {

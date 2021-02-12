@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/react';
 import { AuthForm } from './AuthForm';
-import { getEmptyStoreTestProvider } from '../../../utils/getTestProvider';
+import { getEmptyStoreTestProvider } from '../../../utils/test/getTestProvider';
 
 export default {
   title: 'Component/Auth/Form',

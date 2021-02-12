@@ -4,7 +4,7 @@ import {
 import React from 'react';
 import { Provider } from 'react-redux';
 
-export default function getTestProvider<S = any>(reducer: Reducer<S> | ReducersMapObject<S>, empty = false) {
+export function getTestProvider<S = any>(reducer: Reducer<S> | ReducersMapObject<S>, empty = false) {
   const config: ConfigureStoreOptions<S> = {
     reducer,
     devTools: false

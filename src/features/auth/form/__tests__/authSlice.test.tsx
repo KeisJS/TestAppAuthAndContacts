@@ -2,7 +2,7 @@ import authSlice from '../authSlice';
 import { authProcessApi } from '../api';
 import { testUser } from '../../../user/test.data';
 import { userSlice } from 'features/user';
-import getTestStoreCreator from '../../../../utils/getTestStore';
+import getTestStoreCreator from '../../../../utils/test/getTestStore';
 
 jest.mock('../api');
 
