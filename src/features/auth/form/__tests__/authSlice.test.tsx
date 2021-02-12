@@ -1,9 +1,8 @@
 import authSlice from '../authSlice';
 import { authProcessApi } from '../api';
-import { AppDispatch } from '../../../../app/store';
-import store from '../../../../app/store';
 import { testUser } from '../../../user/test.data';
-import { userSlice } from 'features/user'
+import { userSlice } from 'features/user';
+import getTestStoreCreator from '../../../../utils/getTestStore';
 
 jest.mock('../api');
 
@@ -14,18 +13,15 @@ describe('Test authSlice', () => {
   };
   const authProcessApiMock = authProcessApi as jest.MockedFunction<typeof authProcessApi>;
   
-  
   it('default use', async () => {
-    const { authProcess } = authSlice.actions;
-    const testThunkAction = authProcess(testFormData);
-    const testDispatch: jest.MockedFunction<AppDispatch> = jest.fn();
-    const testGetState: jest.MockedFunction<typeof store.getState> = jest.fn();
+    const { dispatch, getActions } = getTestStoreCreator({});
     const testResponse = { user: testUser };
+
     authProcessApiMock.mockResolvedValueOnce(testResponse);
     
-    await testThunkAction(testDispatch, testGetState, undefined);
+    await dispatch(authSlice.actions.authProcess(testFormData));
     
     expect(authProcessApiMock).toHaveBeenCalledWith(testFormData);
-    expect(testDispatch).toHaveBeenNthCalledWith(2, userSlice.actions.set(testUser));
+    expect(getActions()).toContainEqual( userSlice.actions.set(testUser));
   })
 })
