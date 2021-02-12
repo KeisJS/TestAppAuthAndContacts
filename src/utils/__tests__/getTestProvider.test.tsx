@@ -22,6 +22,7 @@ describe('test stores test utils', () => {
     
     const { TestProvider, store } = getTestProvider({ test: reducer });
     type RootTestState = ReturnType<typeof store.getState>
+    
     const TestComponent = () => {
       const value = useSelector((state: RootTestState) => state.test);
       const dispatch = useDispatch();
