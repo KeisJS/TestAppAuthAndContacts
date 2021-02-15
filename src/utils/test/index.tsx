@@ -1,5 +1,5 @@
 import { getEmptyStoreTestProvider, spyStore, getTestProvider } from './getTestProvider';
-import getTestStoreCreator from './getTestStore';
+import getTestStore from './getTestStore';
 import { byLabelText } from 'testing-library-selector';
 
 interface Selectors {
@@ -11,7 +11,7 @@ export type {
 }
 
 export {
-  getTestStoreCreator,
+  getTestStore,
   getEmptyStoreTestProvider,
   spyStore,
   getTestProvider,

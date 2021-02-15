@@ -3,6 +3,7 @@ import {
 } from '@reduxjs/toolkit';
 import React from 'react';
 import { Provider } from 'react-redux';
+import { getTestStore } from './';
 
 export function getTestProvider<S = any>(reducer: Reducer<S> | ReducersMapObject<S>, empty = false) {
   const config: ConfigureStoreOptions<S> = {
@@ -29,9 +30,16 @@ export function getTestProvider<S = any>(reducer: Reducer<S> | ReducersMapObject
 }
 
 export function getEmptyStoreTestProvider() {
-  const reducer = createReducer(null, {});
+  const store = getTestStore({});
   
-  return getTestProvider(reducer, true);
+  return {
+    TestProvider: ({ children }: React.PropsWithChildren<any>) => (
+      <Provider store={store}>
+        { children }
+      </Provider>
+    ),
+    store
+  };
 }
 
 export function spyStore(store: Store) {

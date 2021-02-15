@@ -1,13 +1,21 @@
 import React from 'react';
+import { MemoryRouter, Route } from 'react-router-dom';
 import { byLabelText, byRole } from 'testing-library-selector';
-import { render, waitFor, screen } from '@testing-library/react';
-import EditContact, { contactFields } from '../EditContact';
+import { render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import EditContact, { contactFields } from '../EditContact';
 import { Selectors } from '../../../../utils/test';
+import editContactAction from '../editContactAction';
+import getTestContact from '../../utils/getTestContact';
+import { getEmptyStoreTestProvider } from '../../../../utils/test';
+import { routes } from '../../../routes';
+
+jest.mock('../editContactAction')
 
 describe('Test AddContact', () => {
-  const nameValue = 'test name';
-  const phoneValue = 'phone value';
+  let contact: ReturnType<typeof getTestContact>;
+  let editContactActionMock: jest.MockedFunction<typeof editContactAction>;
+  
   const form = contactFields.reduce((result, contact) => {
     result[contact.id] = byLabelText(contact.label);
     
@@ -16,9 +24,26 @@ describe('Test AddContact', () => {
   
   form.button = byRole('button', { name: 'Save' });
   
-  it('default use', async () => {
+  beforeEach(() => {
+    contact = getTestContact();
+    editContactActionMock = editContactAction as jest.MockedFunction<typeof editContactAction>;
+    
+    editContactActionMock.mockReset();
+  });
+  
+  it('Test edit contact', async () => {
+    const { TestProvider, store } = getEmptyStoreTestProvider();
+    const { pattern: contactBase } = routes.contacts;
+    editContactActionMock.mockResolvedValue({})
+  
     render((
-      <EditContact />
+      <TestProvider>
+        <MemoryRouter initialEntries={[`${contactBase}/edit/new`]} initialIndex={1} >
+          <Route path={ `${ contactBase }/edit/:id` }>
+            <EditContact />
+          </Route>
+        </MemoryRouter>
+      </TestProvider>
     ));
     
     const nameField = form.name.get();
@@ -27,11 +52,29 @@ describe('Test AddContact', () => {
     
     expect(button).toBeDisabled();
     
-    userEvent.type(nameField, nameValue);
-    userEvent.type(phoneField, phoneValue);
+    userEvent.type(nameField, contact.name);
+    userEvent.type(phoneField, contact.phone);
     
     await waitFor(() => {
       expect(button).not.toBeDisabled();
     });
-  })
+    
+    userEvent.click(button);
+  
+    await waitFor(() => {
+      expect(button).not.toBeDisabled();
+    })
+  
+    expect(editContactActionMock).toHaveBeenCalledWith({
+      dispatch: store.dispatch,
+      contactId: 'new',
+      contact: expect.objectContaining({
+        name: contact.name,
+        phone: contact.phone
+      }),
+      history: expect.objectContaining({
+        push: expect.any(Function)
+      })
+    });
+  });
 });

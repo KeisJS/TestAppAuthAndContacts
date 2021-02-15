@@ -6,8 +6,8 @@ import { byText, byRole } from 'testing-library-selector';
 import userEvent from '@testing-library/user-event';
 import { getEmptyStoreTestProvider, spyStore, getTestProvider } from '../';
 
-describe('test stores test utils', () => {
-  it('default use', async () => {
+describe('Test stores test utils', () => {
+  it('Test getTestProvider', async () => {
     const initialState = 'init';
     const testValue = 'test Value';
     const { actions, reducer } = createSlice({
@@ -49,7 +49,7 @@ describe('test stores test utils', () => {
     expect(testComponent).toHaveTextContent(testValue);
   });
   
-  it('test empty Provider', () => {
+  it('Test getEmptyStoreTestProvider', () => {
     const { store } = getEmptyStoreTestProvider();
     const { dispatch } = spyStore(store);
     const testAction = { type: 'testAction', payload: 0 };
@@ -57,5 +57,9 @@ describe('test stores test utils', () => {
     store.dispatch(testAction);
     
     expect(dispatch).toHaveBeenCalledWith(testAction);
+    
+    const actions = store.getActions();
+    
+    expect(actions[0]).toEqual(testAction);
   });
 })

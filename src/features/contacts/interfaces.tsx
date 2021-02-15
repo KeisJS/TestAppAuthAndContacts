@@ -1,6 +1,11 @@
 export interface Contact {
-  name: string,
-  phone: string
+  id: ContactId,
+  name?: string,
+  phone?: string
 }
+
+export type ContactUserField = Omit<Contact, 'id'>
+
+export type ContactId = string | number;
 
 export type ContactField = keyof Contact;

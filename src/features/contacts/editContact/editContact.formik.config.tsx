@@ -1,5 +1,5 @@
 import { FormikConfig } from 'formik';
-import { Contact } from '../interfaces';
+import { ContactUserField } from '../interfaces';
 
 export default  {
   initialValues: {
@@ -11,4 +11,4 @@ export default  {
   },
   validate: () => ({}),
   onSubmit: () => {}
-} as FormikConfig<Contact>
+} as FormikConfig<ContactUserField>
