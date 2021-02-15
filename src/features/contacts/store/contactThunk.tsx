@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { Contact, ContactUserField } from '../interfaces';
 import { createContactApi } from '../api';
 
-export default {
+const contactThunk = {
   create: createAsyncThunk<Contact, ContactUserField>(
     'contact/async/create',
     async (contact, thunkApi) => {
@@ -15,4 +15,6 @@ export default {
       return Promise.resolve(contact);
     }
   )
-}
+};
+
+export default contactThunk;

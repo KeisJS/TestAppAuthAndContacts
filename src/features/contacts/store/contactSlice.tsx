@@ -29,8 +29,10 @@ const reducer = createReducer(initialContactState, builder => {
   }
 )
 
-export default {
+const contactSlice = {
   reducer,
   actions,
   thunk: contactThunk
 }
+
+export default contactSlice;

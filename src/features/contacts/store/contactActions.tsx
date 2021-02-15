@@ -6,7 +6,7 @@ interface CreateActionPayload {
   (contact: Partial<Contact>): ReturnType<PrepareAction<Contact>>;
 }
 
-export default {
+const contactActions = {
   create: createAction<CreateActionPayload>('contact/create', (contact) => ({
     payload: {
       id: getUniqueContactId(),
@@ -16,3 +16,5 @@ export default {
   remove: createAction<ContactId>('contact/remove'),
   update: createAction<Contact>('contact/update'),
 }
+
+export default contactActions;

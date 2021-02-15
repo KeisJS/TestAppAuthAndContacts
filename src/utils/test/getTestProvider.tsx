@@ -1,5 +1,5 @@
 import {
-  configureStore, Reducer, ReducersMapObject, createReducer, Store, ConfigureStoreOptions
+  configureStore, Reducer, ReducersMapObject, Store, ConfigureStoreOptions
 } from '@reduxjs/toolkit';
 import React from 'react';
 import { Provider } from 'react-redux';

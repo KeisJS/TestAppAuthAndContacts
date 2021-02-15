@@ -25,7 +25,7 @@ interface ContactRouteParams {
 
 export default function EditContact() {
   const {
-    values, errors, touched, isValid, handleSubmit, isSubmitting, getFieldProps, setSubmitting
+    values, isValid, handleSubmit, isSubmitting, getFieldProps, setSubmitting
   } = useFormik(editContactFormikConfig);
   
   const dispatch = useDispatch();
@@ -43,7 +43,7 @@ export default function EditContact() {
         setSubmitting(false);
       });
     }
-  }, [isValid, isSubmitting, dispatch, id, values])
+  }, [isValid, isSubmitting, dispatch, id, values, history, setSubmitting])
   
   return (
     <form onSubmit={ handleSubmit }>
@@ -55,9 +55,11 @@ export default function EditContact() {
           { ...getFieldProps(contact.id)}
         />
       ))}
-      <Button type={ 'submit' } disabled={ !isValid } preloader={ isSubmitting }>
-        Save
-      </Button>
+      <div className="text-end">
+        <Button primary type={ 'submit' } disabled={ !isValid } preloader={ isSubmitting }>
+          Save
+        </Button>
+      </div>
     </form>
   );
 }

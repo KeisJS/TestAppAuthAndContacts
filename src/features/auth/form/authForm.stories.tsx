@@ -3,7 +3,7 @@ import { AuthForm } from './AuthForm';
 import { getEmptyStoreTestProvider } from '../../../utils/test/getTestProvider';
 
 export default {
-  title: 'Component/Auth/Form',
+  title: 'Feature/Auth/Form',
   component: AuthForm
 } as Meta;
 
