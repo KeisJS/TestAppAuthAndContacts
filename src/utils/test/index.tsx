@@ -1,4 +1,4 @@
-import { getEmptyStoreTestProvider, spyStore, getTestProvider } from './getTestProvider';
+import { getMockStoreTestProvider, spyStore, getTestProvider } from './getTestProvider';
 import getTestStore from './getTestStore';
 import { byLabelText } from 'testing-library-selector';
 
@@ -12,7 +12,7 @@ export type {
 
 export {
   getTestStore,
-  getEmptyStoreTestProvider,
+  getMockStoreTestProvider,
   spyStore,
   getTestProvider,
 }

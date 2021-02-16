@@ -3,7 +3,7 @@ import { render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { AuthForm, authFields } from '../AuthForm';
 import { byRole, byLabelText } from 'testing-library-selector';
-import { getEmptyStoreTestProvider, spyStore } from '../../../../utils/test/getTestProvider';
+import { getMockStoreTestProvider, spyStore } from '../../../../utils/test/getTestProvider';
 
 describe('Auth form', () => {
   const form = {
@@ -14,7 +14,7 @@ describe('Auth form', () => {
   
   const testLogin = 'someLogin';
   const testPassword = 'somePassword';
-  const { TestProvider, store } = getEmptyStoreTestProvider();
+  const { TestProvider, store } = getMockStoreTestProvider();
   
   it('default use', async () => {
     const { dispatch } = spyStore(store);

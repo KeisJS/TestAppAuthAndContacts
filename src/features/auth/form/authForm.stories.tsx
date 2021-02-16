@@ -1,13 +1,13 @@
 import { Meta } from '@storybook/react';
 import { AuthForm } from './AuthForm';
-import { getEmptyStoreTestProvider } from '../../../utils/test/getTestProvider';
+import { getMockStoreTestProvider } from '../../../utils/test/getTestProvider';
 
 export default {
   title: 'Feature/Auth/Form',
   component: AuthForm
 } as Meta;
 
-const { TestProvider } = getEmptyStoreTestProvider();
+const { TestProvider } = getMockStoreTestProvider();
 
 export const DefaultUse = () => (
   <div className="container">

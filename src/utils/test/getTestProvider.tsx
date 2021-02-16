@@ -29,8 +29,8 @@ export function getTestProvider<S = any>(reducer: Reducer<S> | ReducersMapObject
   }
 }
 
-export function getEmptyStoreTestProvider() {
-  const store = getTestStore({});
+export function getMockStoreTestProvider(initState = {}) {
+  const store = getTestStore(initState);
   
   return {
     TestProvider: ({ children }: React.PropsWithChildren<any>) => (

@@ -7,7 +7,7 @@ import EditContact, { contactFields } from '../EditContact';
 import { Selectors } from '../../../../utils/test';
 import editContactAction from '../editContactAction';
 import getTestContact from '../../utils/getTestContact';
-import { getEmptyStoreTestProvider } from '../../../../utils/test';
+import { getMockStoreTestProvider } from '../../../../utils/test';
 import { routes } from '../../../routes';
 
 jest.mock('../editContactAction')
@@ -32,7 +32,7 @@ describe('Test AddContact', () => {
   });
   
   it('Test edit contact', async () => {
-    const { TestProvider, store } = getEmptyStoreTestProvider();
+    const { TestProvider, store } = getMockStoreTestProvider();
     const { pattern: contactBase } = routes.contacts;
     editContactActionMock.mockResolvedValue({})
   

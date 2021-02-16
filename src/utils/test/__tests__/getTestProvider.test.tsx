@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { render } from '@testing-library/react';
 import { byText, byRole } from 'testing-library-selector';
 import userEvent from '@testing-library/user-event';
-import { getEmptyStoreTestProvider, spyStore, getTestProvider } from '../';
+import { getMockStoreTestProvider, spyStore, getTestProvider } from '../';
 
 describe('Test stores test utils', () => {
   it('Test getTestProvider', async () => {
@@ -49,8 +49,9 @@ describe('Test stores test utils', () => {
     expect(testComponent).toHaveTextContent(testValue);
   });
   
-  it('Test getEmptyStoreTestProvider', () => {
-    const { store } = getEmptyStoreTestProvider();
+  it('Test getMockStoreTestProvider', () => {
+    const initState = { test: '123' };
+    const { store } = getMockStoreTestProvider(initState);
     const { dispatch } = spyStore(store);
     const testAction = { type: 'testAction', payload: 0 };
     
@@ -61,5 +62,6 @@ describe('Test stores test utils', () => {
     const actions = store.getActions();
     
     expect(actions[0]).toEqual(testAction);
+    expect(store.getState()).toEqual(initState)
   });
 })
