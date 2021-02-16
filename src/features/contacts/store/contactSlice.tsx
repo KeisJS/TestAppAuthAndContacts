@@ -31,8 +31,7 @@ const reducer = createReducer(initialContactState, builder => {
 
 const contactSlice = {
   reducer,
-  actions,
-  thunk: contactThunk
+  actions
 }
 
 export default contactSlice;

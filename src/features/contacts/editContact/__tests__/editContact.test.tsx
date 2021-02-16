@@ -9,11 +9,12 @@ import editContactAction from '../editContactAction';
 import getTestContact from '../../utils/getTestContact';
 import { getMockStoreTestProvider } from '../../../../utils/test';
 import { routes } from '../../../routes';
+import { Contact } from '../../interfaces';
 
 jest.mock('../editContactAction')
 
 describe('Test AddContact', () => {
-  let contact: ReturnType<typeof getTestContact>;
+  let contact: Required<Contact>;
   let editContactActionMock: jest.MockedFunction<typeof editContactAction>;
   
   const form = contactFields.reduce((result, contact) => {

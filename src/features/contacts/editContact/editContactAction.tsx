@@ -1,9 +1,9 @@
 import { AppDispatch } from '../../../app/store';
 import { ContactUserField, ContactId } from '../interfaces';
-import contactSlice from '../store/contactSlice';
 import { routes } from '../../routes/routes';
+import contactThunk from '../store/contactThunk';
 
-const { create, update } = contactSlice.thunk;
+const { create, update } = contactThunk;
 
 interface editContactActionParams {
   dispatch: AppDispatch,

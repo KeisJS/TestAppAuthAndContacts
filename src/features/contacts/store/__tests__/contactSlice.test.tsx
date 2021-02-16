@@ -1,8 +1,9 @@
 import contactSlice, { initialContactState } from '../contactSlice';
 import { Contact } from '../../interfaces';
+import contactThunk from '../contactThunk';
 
 describe('Test contactSlice', () => {
-  const { reducer, actions, thunk } = contactSlice;
+  const { reducer, actions } = contactSlice;
   let contacts: Contact[];
   let testState: typeof initialContactState;
   let testContact: Partial<Contact>;
@@ -28,7 +29,7 @@ describe('Test contactSlice', () => {
   it('Test create new contact', () => {
     testContact.id = 'temp_1';
     
-    expect(reducer(testState, { type: thunk.create.fulfilled, payload: testContact }).contacts).toEqual(
+    expect(reducer(testState, { type: contactThunk.create.fulfilled, payload: testContact }).contacts).toEqual(
       [testContact, ...contacts]
     );
   });
@@ -48,7 +49,7 @@ describe('Test contactSlice', () => {
       phone: '22222-22222'
     }
     
-    const { contacts } = reducer(testState, { type: thunk.update.fulfilled, payload: testUpdatedContact });
+    const { contacts } = reducer(testState, { type: contactThunk.update.fulfilled, payload: testUpdatedContact });
     const updatedContacts = contacts.filter(contact => contact.id === testUpdatedContact.id);
     
     expect(updatedContacts).toHaveLength(1);

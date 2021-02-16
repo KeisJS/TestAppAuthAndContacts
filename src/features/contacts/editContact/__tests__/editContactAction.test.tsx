@@ -1,9 +1,9 @@
 import editContactFactory from '../editContactAction';
-import contactSlice from '../../store/contactSlice';
 import getTestContact from '../../utils/getTestContact';
+import contactThunk from '../../store/contactThunk';
 import { routes } from '../../../routes';
 
-jest.mock('../../store/contactSlice');
+jest.mock('../../store/contactThunk');
 
 describe('Test editContactAction', () => {
   let dispatch: jest.MockedFunction<any>;
@@ -24,7 +24,7 @@ describe('Test editContactAction', () => {
       history
     });
     
-    expect(contactSlice.thunk.create).toHaveBeenCalledWith(contact);
+    expect(contactThunk.create).toHaveBeenCalledWith(contact);
     expect(history.push).toHaveBeenCalledWith(routes.contacts.pattern);
   });
   
@@ -37,6 +37,6 @@ describe('Test editContactAction', () => {
       contact,
       history
     });
-    expect(contactSlice.thunk.update).toHaveBeenCalledWith(contact);
+    expect(contactThunk.update).toHaveBeenCalledWith(contact);
   });
 })
