@@ -9,12 +9,14 @@ export default function ContactList() {
   const history = useHistory();
   
   return (
-    <table>
+    <table className="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Phone</th>
+        </tr>
+      </thead>
       <tbody>
-      <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Phone</th>
-      </tr>
       { contacts.map(contact => (
         <tr key={ contact.id } onClick={ () => selectContact(contact.id, history)}>
           <td>{ contact.name }</td>
