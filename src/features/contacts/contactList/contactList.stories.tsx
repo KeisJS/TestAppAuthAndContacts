@@ -22,9 +22,9 @@ export const DefaultUse = () => {
     <MemoryRouter>
       <TestProvider>
         <Switch>
-          <Route path={`${routes.contacts.pattern}/edit/:id`}>
+          <Route path={ `${ routes.contacts.pattern }/edit/:id` }>
             <>
-              edit contact. <Link to={ `${ routes.contacts.pattern }` }>Back to contacts</Link>
+              Edit or Create new contact. <Link to={ `${ routes.contacts.pattern }` }>Back to contacts</Link>
             </>
           </Route>
           <Route>

@@ -2,7 +2,7 @@ import React from 'react';
 import { MemoryRouter, Route, Switch, Link } from 'react-router-dom';
 import { Meta } from '@storybook/react';
 import EditContact from './EditContact';
-import { getTestProvider } from '../../../utils/test';
+import { getMockStoreTestProvider } from '../../../utils/test';
 import { routes } from '../../routes';
 
 export default {
@@ -10,7 +10,7 @@ export default {
   component: EditContact
 } as Meta;
 
-const { TestProvider } = getTestProvider({});
+const { TestProvider } = getMockStoreTestProvider({});
 const { pattern: contactBase } = routes.contacts;
 
 export const DefaultUse = () => (
