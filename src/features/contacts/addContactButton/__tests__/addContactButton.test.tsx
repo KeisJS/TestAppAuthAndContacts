@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Switch, Route } from 'react-router-dom';
 import { getMockStoreTestProvider } from '../../../../utils/test';
 import AddContactButton from '../AddContactButton';
-import { routes } from '../../../routes';
+import appRoutes from '../../../../app/routes';
 
 describe('Test AddContactButton', () => {
   it('Test default use', () => {
@@ -16,7 +16,7 @@ describe('Test AddContactButton', () => {
       <MemoryRouter>
         <TestProvider>
           <Switch>
-            <Route path={ `${ routes.contacts.pattern }/edit/:id`}>
+            <Route path={ `${ appRoutes.contacts.child.editById.path }`}>
               { editNewBody }
             </Route>
             <Route>

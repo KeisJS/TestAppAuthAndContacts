@@ -1,11 +1,11 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { MemoryRouter, Switch, Route, Redirect } from 'react-router-dom';
-import { routes } from 'features/routes/routes';
-import { AuthPage } from '../AuthPage';
+import AuthPage  from '../AuthPage';
 import { byText, byRole } from 'testing-library-selector';
 import { getTestProvider } from '../../../../utils/test';
 import { userSlice } from 'features/user';
+import appRoutes from '../../../../app/routes';
 
 describe('Auth path', () => {
   const contactsBody = 'Contact content';
@@ -21,14 +21,14 @@ describe('Auth path', () => {
       <TestProvider>
         <MemoryRouter>
           <Switch>
-            <Route path={ routes.auth.pattern }>
+            <Route path={ appRoutes.auth.path }>
               <AuthPage />
             </Route>
-            <Route path={ routes.contacts.pattern }>
+            <Route path={ appRoutes.contacts.path }>
               { contactsBody }
             </Route>
             <Route>
-              <Redirect to={ routes.auth.pattern } />
+              <Redirect to={ appRoutes.auth.path } />
             </Route>
           </Switch>
         </MemoryRouter>

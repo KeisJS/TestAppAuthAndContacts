@@ -1,12 +1,12 @@
 import React, { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import Button from '../../../components/ui/button/Button';
-import { routes } from 'features/routes';
+import appRoutes from '../../../app/routes';
 
 function AddContactButton() {
   const history = useHistory();
   const onClick = useCallback(() => {
-    history.push(`${ routes.contacts.pattern }/edit/:id`)
+    history.push(`${ appRoutes.contacts.child.editNew.path }`)
   }, [history]);
   
   return (

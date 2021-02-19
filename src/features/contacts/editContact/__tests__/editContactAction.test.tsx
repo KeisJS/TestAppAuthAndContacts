@@ -1,7 +1,7 @@
 import editContactFactory from '../editContactAction';
 import getTestContact from '../../utils/getTestContact';
 import contactThunk from '../../store/contactThunk';
-import { routes } from '../../../routes';
+import appRoutes from '../../../../app/routes';
 
 jest.mock('../../store/contactThunk');
 
@@ -25,7 +25,7 @@ describe('Test editContactAction', () => {
     });
     
     expect(contactThunk.create).toHaveBeenCalledWith(contact);
-    expect(history.push).toHaveBeenCalledWith(routes.contacts.pattern);
+    expect(history.push).toHaveBeenCalledWith(appRoutes.contacts.path);
   });
   
   it('Test editContactAction Update', async () => {

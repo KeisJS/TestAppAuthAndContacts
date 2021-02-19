@@ -2,16 +2,16 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { AuthForm } from '../form/AuthForm';
 import { Redirect } from 'react-router-dom';
-import { routes } from '../../routes/routes';
 import { userSelectors } from 'features/user';
+import appRoutes from '../../../app/routes';
 
-export const AuthPage = function () {
+const AuthPage = function () {
   const user = useSelector(userSelectors.user);
   
   return (
     <>
       { user !== null
-        ? <Redirect to={ routes.contacts.pattern } />
+        ? <Redirect to={ appRoutes.contacts.path } />
         : (
           <div className="container">
             <div className="row vh-100 justify-content-center align-items-center">
@@ -25,3 +25,5 @@ export const AuthPage = function () {
     </>
   )
 }
+
+export default AuthPage;

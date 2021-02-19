@@ -3,7 +3,7 @@ import { MemoryRouter, Route, Switch, Link } from 'react-router-dom';
 import { Meta } from '@storybook/react';
 import EditContact from './EditContact';
 import { getMockStoreTestProvider } from '../../../utils/test';
-import { routes } from '../../routes';
+import appRoutes from '../../../app/routes';
 
 export default {
   title: 'Feature/Contacts/editContact',
@@ -11,16 +11,15 @@ export default {
 } as Meta;
 
 const { TestProvider } = getMockStoreTestProvider({});
-const { pattern: contactBase } = routes.contacts;
 
 export const DefaultUse = () => (
   <TestProvider>
-    <MemoryRouter initialEntries={[`${ contactBase }/edit/new`]} initialIndex={1} >
+    <MemoryRouter initialEntries={[appRoutes.contacts.child.editNew.path]} initialIndex={1} >
       <Switch>
-        <Route path={ contactBase } exact>
-          <Link to={ `${ contactBase }/edit/new` }>Back to edit/new</Link>
+        <Route path={ appRoutes.contacts.path } exact>
+          <Link to={ appRoutes.contacts.child.editNew.path }>Back to edit/new</Link>
         </Route>
-        <Route path={ `${ contactBase }/edit/:id` }>
+        <Route path={ appRoutes.contacts.child.editById.path }>
           <EditContact />
         </Route>
       </Switch>

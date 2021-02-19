@@ -8,8 +8,8 @@ import { Selectors } from '../../../../utils/test';
 import editContactAction from '../editContactAction';
 import getTestContact from '../../utils/getTestContact';
 import { getMockStoreTestProvider } from '../../../../utils/test';
-import { routes } from '../../../routes';
 import { Contact } from '../../interfaces';
+import appRoutes from '../../../../app/routes';
 
 jest.mock('../editContactAction')
 
@@ -34,13 +34,12 @@ describe('Test AddContact', () => {
   
   it('Test edit contact', async () => {
     const { TestProvider, store } = getMockStoreTestProvider();
-    const { pattern: contactBase } = routes.contacts;
     editContactActionMock.mockResolvedValue({})
   
     render((
       <TestProvider>
-        <MemoryRouter initialEntries={[`${contactBase}/edit/new`]} initialIndex={1} >
-          <Route path={ `${ contactBase }/edit/:id` }>
+        <MemoryRouter initialEntries={[appRoutes.contacts.child.editNew.path]} initialIndex={1} >
+          <Route path={ appRoutes.contacts.child.editById.path }>
             <EditContact />
           </Route>
         </MemoryRouter>

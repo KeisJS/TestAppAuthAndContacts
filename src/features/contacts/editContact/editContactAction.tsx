@@ -1,7 +1,7 @@
 import { AppDispatch } from '../../../app/store';
 import { ContactUserField, ContactId } from '../interfaces';
-import { routes } from '../../routes/routes';
 import contactThunk from '../store/contactThunk';
+import appRoutes from '../../../app/routes';
 
 const { create, update } = contactThunk;
 
@@ -18,7 +18,7 @@ export default async function editContactAction({
   if (contactId === 'new') {
     await dispatch(create(contact));
     
-    history.push(routes.contacts.pattern);
+    history.push(appRoutes.contacts.path);
   } else {
     return dispatch(update({
       id: contactId,

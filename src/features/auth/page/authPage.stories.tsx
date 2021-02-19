@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import { AuthPage } from './AuthPage';
+import AuthPage  from './AuthPage';
 import { getTestProvider } from '../../../utils/test';
 import { userSlice } from '../../user';
 
