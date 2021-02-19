@@ -1,6 +1,6 @@
 import userSelectors from './selectors';
 import { User } from './interfaces';
-import userSlice from './user.slice';
+import userSlice from './userSlice';
 
 export type {
   User

@@ -1,4 +1,4 @@
-import userSlice from 'features/user/user.slice';
+import userSlice from 'features/user/userSlice';
 import contactSlice from '../features/contacts/store/contactSlice';
 
 const rootReducerMap = {

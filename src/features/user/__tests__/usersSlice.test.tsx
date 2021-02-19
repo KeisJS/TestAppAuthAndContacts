@@ -1,4 +1,4 @@
-import userSlice from '../user.slice';
+import userSlice from '../userSlice';
 import { testUser } from '../test.data';
 
 describe('user slice', () => {
