@@ -40,14 +40,14 @@ describe('Test App', () => {
       </TestProvider>
     ));
   
-    expect(pages.contacts.query()).toBeInTheDocument();
-
-    testHistory.push(appRoutes.auth.path);
-    
     expect(pages.auth.query()).toBeInTheDocument();
-
+  
     testHistory.push(appRoutes.contacts.path);
   
     expect(pages.contacts.query()).toBeInTheDocument();
+  
+    testHistory.push(appRoutes.auth.path);
+
+    expect(pages.auth.query()).toBeInTheDocument();
   })
 })

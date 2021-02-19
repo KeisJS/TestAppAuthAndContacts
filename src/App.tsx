@@ -14,8 +14,11 @@ function App() {
         <Route path={ appRoutes.auth.path }>
           <AuthPage />
         </Route>
-        <Route>
+        <Route path={ appRoutes.contacts.path }>
           <ContactsPage />
+        </Route>
+        <Route>
+          <AuthPage />
         </Route>
       </Switch>
     </>
