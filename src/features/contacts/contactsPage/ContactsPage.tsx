@@ -15,16 +15,20 @@ function ContactsPage() {
   }
   
   return (
-    <>
-      <Switch>
-        <Route path={ `${ contactRoute.path }` } exact>
-          <ContactList />
-        </Route>
-        <Route path={ `${ contactRoute.child.editById.path }` }>
-          <EditContact />
-        </Route>
-      </Switch>
-    </>
+    <div className="container-lg">
+      <div className="row">
+        <div className="col-12 mt-2">
+          <Switch>
+            <Route path={ `${ contactRoute.path }` } exact>
+              <ContactList />
+            </Route>
+            <Route path={ `${ contactRoute.child.editById.path }` }>
+              <EditContact />
+            </Route>
+          </Switch>
+        </div>
+      </div>
+    </div>
   )
 }
 

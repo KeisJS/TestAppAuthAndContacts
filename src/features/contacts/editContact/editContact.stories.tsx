@@ -6,7 +6,7 @@ import { getMockStoreTestProvider } from '../../../utils/test';
 import appRoutes from '../../../app/routes';
 
 export default {
-  title: 'Feature/Contacts/editContact',
+  title: 'Feature/Contacts/EditContact',
   component: EditContact
 } as Meta;
 

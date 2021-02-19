@@ -1,7 +1,7 @@
 import React from 'react';
 import { MemoryRouter, Route } from 'react-router-dom';
 import { byLabelText, byRole } from 'testing-library-selector';
-import { render, waitFor } from '@testing-library/react';
+import { render, waitFor, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import EditContact, { contactFields } from '../EditContact';
 import { Selectors } from '../../../../utils/test';
@@ -32,7 +32,7 @@ describe('Test AddContact', () => {
     editContactActionMock.mockReset();
   });
   
-  it('Test edit contact', async () => {
+  it('Test edit new contact', async () => {
     const { TestProvider, store } = getMockStoreTestProvider();
     editContactActionMock.mockResolvedValue({})
   
@@ -49,6 +49,8 @@ describe('Test AddContact', () => {
     const nameField = form.name.get();
     const phoneField = form.phone.get();
     const button = form.button.get();
+    
+    expect(byRole('button', { name: 'Back' }).query()).toBeInTheDocument();
     
     expect(button).toBeDisabled();
     

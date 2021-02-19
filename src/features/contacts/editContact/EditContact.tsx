@@ -7,6 +7,7 @@ import { Button } from '../../../components/ui/button/Button';
 import { ContactFormField } from './interfaces';
 import editContactFormikConfig from './editContact.formik.config';
 import editContactAction from './editContactAction';
+import BackToButton from '../backToButton/BackToButton';
 
 export const contactFields: ContactFormField[] = [
   {
@@ -55,10 +56,15 @@ export default function EditContact() {
           { ...getFieldProps(contact.id)}
         />
       ))}
-      <div className="text-end">
-        <Button primary type={ 'submit' } disabled={ !isValid } preloader={ isSubmitting }>
-          Save
-        </Button>
+      <div className="row">
+        <div className="col-6">
+          <BackToButton />
+        </div>
+        <div className="col-6 text-end">
+          <Button primary type={ 'submit' } disabled={ !isValid } preloader={ isSubmitting }>
+            Save
+          </Button>
+        </div>
       </div>
     </form>
   );
