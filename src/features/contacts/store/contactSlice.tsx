@@ -12,7 +12,7 @@ const reducer = createReducer(initialContactState, builder => {
       .addCase(contactThunk.create.fulfilled, (state, { payload }) => {
         state.contacts.unshift(payload)
       })
-      .addCase(actions.remove, (state, { payload: contactId }) => {
+      .addCase(contactThunk.remove.fulfilled, (state, { payload: contactId }) => {
         const index = state.contacts.findIndex(contact => contact.id === contactId);
         
         if (index !== -1) {

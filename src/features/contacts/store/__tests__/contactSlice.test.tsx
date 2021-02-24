@@ -37,7 +37,7 @@ describe('Test contactSlice', () => {
   it('Test remove contact', () => {
     const testId = 1;
     
-    expect(reducer(testState, actions.remove(testId)).contacts).not.toContainEqual(
+    expect(reducer(testState, { type: contactThunk.remove.fulfilled, payload: testId }).contacts).not.toContainEqual(
       expect.objectContaining({ id: testId })
     );
   });

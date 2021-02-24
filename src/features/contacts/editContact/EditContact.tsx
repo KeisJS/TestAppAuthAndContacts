@@ -8,6 +8,7 @@ import { ContactFormField } from './interfaces';
 import getEditContactFormikConfig from './editContact.formik.config';
 import editContactAction from './editContactAction';
 import BackToButton from '../backToButton/BackToButton';
+import RemoveContactButton from '../removeContactButton/RemoveContactButton';
 import contactSelectors from '../store/selectors';
 
 export const contactFields: ContactFormField[] = [
@@ -32,7 +33,7 @@ export default function EditContact() {
   const { id } = useParams<ContactRouteParams>();
   const contact = contacts.find(currentContact => currentContact.id === id);
   let editContactFormikConfig = getEditContactFormikConfig();
-
+  
   if (id !== 'new') {
     if(!contact) {
       history.goBack();
@@ -63,6 +64,13 @@ export default function EditContact() {
   
   return (
     <form onSubmit={ handleSubmit }>
+      <div className="row">
+        { id !== 'new' ? (
+          <div className="col-12 text-end">
+            <RemoveContactButton id={ id } lightHistory={ history } />
+          </div>
+        ) : null }
+      </div>
       { contactFields.map(contact => (
         <TextField
           label={ contact.label }

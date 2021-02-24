@@ -20,7 +20,7 @@ const { TestProvider } = getMockStoreTestProvider({
 
 export const DefaultUse = () => (
   <TestProvider>
-    <MemoryRouter initialEntries={[appRoutes.contacts.child.editNew.path]} initialIndex={1} >
+    <MemoryRouter initialEntries={ [appRoutes.contacts.child.editById.getPath({id: contact.id})] }>
       <Switch>
         <Route path={ appRoutes.contacts.path } exact>
           <Link to={ appRoutes.contacts.child.editNew.path }>Back to edit/new</Link>

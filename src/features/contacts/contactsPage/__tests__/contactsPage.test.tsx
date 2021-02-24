@@ -52,6 +52,7 @@ describe('Test ContactsPage', () => {
     userEvent.click(toContacts);
 
     expect(page.editContact.query()).not.toBeInTheDocument();
+    expect(page.contactList.query()).toBeInTheDocument();
     
     userEvent.click(toEditById);
     
