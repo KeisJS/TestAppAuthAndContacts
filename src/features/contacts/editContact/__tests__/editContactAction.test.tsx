@@ -2,6 +2,7 @@ import editContactFactory from '../editContactAction';
 import getTestContact from '../../utils/getTestContact';
 import contactThunk from '../../store/contactThunk';
 import appRoutes from '../../../../app/routes';
+import { newId } from '../../contactsPage/contactRoute';
 
 jest.mock('../../store/contactThunk');
 
@@ -19,7 +20,7 @@ describe('Test editContactAction', () => {
     
     await editContactFactory({
       dispatch,
-      contactId: 'new',
+      contactId: newId,
       contact,
       history
     });

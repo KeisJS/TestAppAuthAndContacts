@@ -1,6 +1,6 @@
 import React from 'react';
-import { MemoryRouter, Route, useHistory } from 'react-router-dom';
-import { byLabelText, byRole } from 'testing-library-selector';
+import { MemoryRouter, Route, useHistory, Switch } from 'react-router-dom';
+import { byLabelText, byRole, byTestId } from 'testing-library-selector';
 import { render, waitFor, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import EditContact, { contactFields } from '../EditContact';
@@ -12,6 +12,7 @@ import { Contact } from '../../interfaces';
 import appRoutes from '../../../../app/routes';
 import { initialContactState } from '../../store/contactSlice';
 import { SetSpiedHistory, SpiedHistory } from '../../../../utils/test/SetSpiedHistory';
+import { newId } from '../../contactsPage/contactRoute';
 
 jest.mock('../editContactAction')
 
@@ -75,7 +76,7 @@ describe('Test AddContact', () => {
   
     expect(editContactActionMock).toHaveBeenCalledWith({
       dispatch: store.dispatch,
-      contactId: 'new',
+      contactId: newId,
       contact: expect.objectContaining({
         name: contact.name,
         phone: contact.phone
@@ -137,22 +138,28 @@ describe('Test AddContact', () => {
     });
   });
   
-  it('Test wrong contact', () => {
+  it('Test contact not exist/remove', () => {
     const { TestProvider } = getMockStoreTestProvider({
       contacts: initialContactState
     });
+    const contactTestId = 'contactsId';
   
     render((
       <TestProvider>
-        <MemoryRouter initialEntries={ ['/mock', appRoutes.contacts.child.editById.getPath({id: contact.id})] } initialIndex={2}>
+        <MemoryRouter initialEntries={ [appRoutes.contacts.path, appRoutes.contacts.child.editById.getPath({id: contact.id})] }>
           <SetSpiedHistory outHistory={ history } />
-          <Route path={ appRoutes.contacts.child.editById.path }>
-            <EditContact />
-          </Route>
+          <Switch>
+            <Route path={ appRoutes.contacts.path } exact>
+              <div data-testid={ contactTestId }></div>
+            </Route>
+            <Route path={ appRoutes.contacts.child.editById.path }>
+              <EditContact />
+            </Route>
+          </Switch>
         </MemoryRouter>
       </TestProvider>
     ));
     
-    expect(history.goBack).toHaveBeenCalled();
+    expect(byTestId(contactTestId).query()).toBeInTheDocument();
   })
 });

@@ -2,6 +2,7 @@ import { generatePath } from 'react-router-dom';
 
 const baseContacts = '/contacts';
 const editById = `${baseContacts}/edit/:id`;
+export const newId = 'new';
 
 const contactRoute = {
   path: baseContacts,
@@ -11,7 +12,7 @@ const contactRoute = {
       getPath: ({ id }: { id: string | number }) => generatePath(editById, { id: String(id) })
     },
     editNew: {
-      path: generatePath(editById, { id: 'new' })
+      path: generatePath(editById, { id: newId })
     },
   }
 }

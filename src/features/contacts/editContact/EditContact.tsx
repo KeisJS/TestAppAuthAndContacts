@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, Redirect } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { TextField } from '../../../components/ui/form/textField/TextField';
@@ -10,6 +10,8 @@ import editContactAction from './editContactAction';
 import BackToButton from '../backToButton/BackToButton';
 import RemoveContactButton from '../removeContactButton/RemoveContactButton';
 import contactSelectors from '../store/selectors';
+import appRoutes from '../../../app/routes';
+import { newId } from '../contactsPage/contactRoute';
 
 export const contactFields: ContactFormField[] = [
   {
@@ -34,14 +36,10 @@ export default function EditContact() {
   const contact = contacts.find(currentContact => currentContact.id === id);
   let editContactFormikConfig = getEditContactFormikConfig();
   
-  if (id !== 'new') {
-    if(!contact) {
-      history.goBack();
-    } else {
-      editContactFormikConfig.initialValues = {
-        name: contact.name,
-        phone: contact.phone,
-      }
+  if (contact) {
+    editContactFormikConfig.initialValues = {
+      name: contact.name,
+      phone: contact.phone,
     }
   }
 
@@ -63,32 +61,36 @@ export default function EditContact() {
   }, [isValid, isSubmitting, dispatch, id, values, history, setSubmitting]);
   
   return (
-    <form onSubmit={ handleSubmit }>
-      <div className="row">
-        { id !== 'new' ? (
-          <div className="col-12 text-end">
-            <RemoveContactButton id={ id } lightHistory={ history } />
+    <>
+      { id === newId || contact ?
+        <form onSubmit={ handleSubmit }>
+          <div className="row">
+            { id !== newId ? (
+              <div className="col-12 text-end">
+                <RemoveContactButton id={ id } />
+              </div>
+            ) : null }
           </div>
-        ) : null }
-      </div>
-      { contactFields.map(contact => (
-        <TextField
-          label={ contact.label }
-          key={ contact.id }
-          id={ contact.id }
-          { ...getFieldProps(contact.id)}
-        />
-      ))}
-      <div className="row">
-        <div className="col-6">
-          <BackToButton />
-        </div>
-        <div className="col-6 text-end">
-          <Button primary type={ 'submit' } disabled={ !isValid } preloader={ isSubmitting }>
-            Save
-          </Button>
-        </div>
-      </div>
-    </form>
+          { contactFields.map(contact => (
+            <TextField
+              label={ contact.label }
+              key={ contact.id }
+              id={ contact.id }
+              { ...getFieldProps(contact.id)}
+            />
+          ))}
+          <div className="row">
+            <div className="col-6">
+              <BackToButton />
+            </div>
+            <div className="col-6 text-end">
+              <Button primary type={ 'submit' } disabled={ !isValid } preloader={ isSubmitting }>
+                Save
+              </Button>
+            </div>
+          </div>
+        </form>
+        : <Redirect to={appRoutes.contacts.path} /> }
+    </>
   );
 }

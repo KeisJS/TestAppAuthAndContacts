@@ -3,21 +3,15 @@ import { ContactId } from '../interfaces';
 import { useDispatch } from 'react-redux';
 import Button from '../../../components/ui/button/Button';
 import contactThunk from '../store/contactThunk';
-import appRoutes from '../../../app/routes';
 
 interface RemoveContactButtonProps {
   id: ContactId;
-  lightHistory: {
-    replace: (url: string) => void
-  };
 }
 
-export default  function RemoveContactButton({ id, lightHistory }: RemoveContactButtonProps) {
+export default  function RemoveContactButton({ id }: RemoveContactButtonProps) {
   const dispatch = useDispatch();
-  const onClick = async () => {
-    await dispatch(contactThunk.remove(id));
-    
-    lightHistory.replace(appRoutes.contacts.path);
+  const onClick = () => {
+    dispatch(contactThunk.remove(id));
   }
 
   return (
