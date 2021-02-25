@@ -13,7 +13,7 @@
 - Storybook
 - Json-server
 - Formik
-___
+- Fontawesome
 
 ## Available Scripts
 
